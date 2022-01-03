@@ -1,0 +1,15 @@
+$breakpoint-mobile: 740px; // mobile
+$breakpoint-tablet: 1280px; // tablet
+
+// responsive size
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
