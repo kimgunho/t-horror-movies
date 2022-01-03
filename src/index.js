@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<div>loading...</div>}>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 );
