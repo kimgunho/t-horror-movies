@@ -1,0 +1,36 @@
+@import "../../common.scss";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $normalPadding;
+  box-sizing: border-box;
+
+  > .logo {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    > a {
+      color: $pointColor-purple;
+    }
+  }
+
+  > .gnb {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    > li {
+      text-transform: uppercase;
+
+      > a {
+        display: block;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        color: #333;
+      }
+    }
+  }
+}

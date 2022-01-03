@@ -1,5 +1,12 @@
+// break resize
 $breakpoint-mobile: 740px; // mobile
 $breakpoint-tablet: 1280px; // tablet
+
+// padding,margin ins
+$normalPadding: 20px;
+
+// color ins
+$pointColor-purple: #713bda;
 
 // responsive size
 @mixin mobile {
