@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 import {
@@ -12,14 +12,12 @@ import Movies from "../../components/home/Movies";
 
 function Home() {
   const getApiDatas = useRecoilValue(getMoviesApi);
-  const querys = useRecoilValue(querysState);
   const setMetaState = useSetRecoilState(metaState);
   const [movies, setMovies] = useRecoilState(moviesState);
+  const [querys, setQuery] = useRecoilState(querysState);
+  const itemEnd = useRef();
 
-  useEffect(() => {
-    setMovies(getApiDatas.results);
-  }, [querys]);
-
+  // init api meta data
   useEffect(() => {
     setMetaState({
       totalPage: getApiDatas.total_pages,
@@ -27,7 +25,33 @@ function Home() {
     });
   }, []);
 
-  return <Movies items={movies} />;
+  // re get api after change query
+  useEffect(() => {
+    setMovies((prev) => [...prev, ...getApiDatas.results]);
+  }, [querys]);
+
+  // infinity scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entrise) => {
+        if (entrise[0].isIntersecting) {
+          setQuery((prev) => ({
+            ...prev,
+            page: prev.page + 1,
+          }));
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(itemEnd.current);
+  }, []);
+
+  return (
+    <>
+      <Movies movies={movies} />
+      <div style={{ height: 1 }} ref={itemEnd}></div>
+    </>
+  );
 }
 
 export default Home;

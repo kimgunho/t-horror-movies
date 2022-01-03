@@ -5,10 +5,10 @@ import styles from "./Movies.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Movies({ items }) {
+function Movies({ movies }) {
   return (
     <ul className={cx("items")}>
-      {items?.map((movie) => (
+      {movies?.map((movie) => (
         <li key={movie.id}>
           <Link to={`/${movie.id}`}>
             <div className={cx("image")}>
