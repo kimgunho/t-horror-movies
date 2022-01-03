@@ -1,24 +1,33 @@
 import { useEffect } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
-import { getMoviesApi, metaState, moviesState } from "../../recoil/state";
+import {
+  getMoviesApi,
+  metaState,
+  moviesState,
+  querysState,
+} from "../../recoil/state";
 
 import Movies from "../../components/home/Movies";
 
 function Home() {
-  const data = useRecoilValue(getMoviesApi);
+  const getApiDatas = useRecoilValue(getMoviesApi);
+  const querys = useRecoilValue(querysState);
   const setMetaState = useSetRecoilState(metaState);
-  const setMovies = useSetRecoilState(moviesState);
+  const [movies, setMovies] = useRecoilState(moviesState);
 
   useEffect(() => {
-    setMovies(data.results);
-    setMetaState({
-      totalPage: data.total_pages,
-      totalResults: data.total_results,
-    });
-  }, [data]);
+    setMovies(getApiDatas.results);
+  }, [querys]);
 
-  return <Movies />;
+  useEffect(() => {
+    setMetaState({
+      totalPage: getApiDatas.total_pages,
+      totalResults: getApiDatas.total_results,
+    });
+  }, []);
+
+  return <Movies items={movies} />;
 }
 
 export default Home;
