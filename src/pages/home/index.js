@@ -8,6 +8,7 @@ import {
 import { getMoviesApi, moviesState, querysState } from "../../recoil/state";
 
 import Movies from "../../components/home/Movies";
+import Skeleton from "../../components/shared/Skeleton";
 
 function Home() {
   const { contents, state } = useRecoilValueLoadable(getMoviesApi);
@@ -66,7 +67,12 @@ function Home() {
     }
 
     case "loading":
-      return <Movies movies={movies} />;
+      return (
+        <>
+          <Movies movies={movies} />
+          <Skeleton />
+        </>
+      );
     case "hasError":
       console.error(contents);
       break;
