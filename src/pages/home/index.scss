@@ -1,0 +1,9 @@
+@import "../../common.scss";
+
+.container {
+  position: relative;
+
+  > .contents {
+    width: calc(100% - 25rem);
+  }
+}

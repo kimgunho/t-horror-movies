@@ -6,8 +6,10 @@ import {
 } from "recoil";
 
 import { getMoviesApi, moviesState, querysState } from "../../recoil/state";
+import "./index.scss";
 
 import Movies from "../../components/home/Movies";
+import Filter from "../../components/home/Filter";
 import Skeleton from "../../components/shared/Skeleton";
 
 function Home() {
@@ -23,13 +25,12 @@ function Home() {
 
       setMovies((prev) => {
         const totalMovies = prev.concat(currentMovies);
-        const filterMovies = totalMovies.filter((movie, index) => {
-          return (
+        const filterMovies = totalMovies.filter(
+          (movie, index) =>
             totalMovies.findIndex((movie2) => {
               return movie.id === movie2.id;
             }) === index
-          );
-        });
+        );
 
         return filterMovies;
       });
@@ -59,25 +60,30 @@ function Home() {
   switch (state) {
     case "hasValue": {
       return (
-        <>
-          <Movies movies={movies} />
-          <div style={{ height: 1 }} ref={itemEnd}></div>
-        </>
+        <div className="container">
+          <div className="contents">
+            <Movies movies={movies} />
+            <div style={{ height: 1 }} ref={itemEnd}></div>
+          </div>
+          <Filter />
+        </div>
       );
     }
 
     case "loading":
       return (
-        <>
-          <Movies movies={movies} />
-          <Skeleton />
-        </>
+        <div className="container">
+          <div className="contents">
+            <Movies movies={movies} />
+            <Skeleton />
+          </div>
+          <Filter />
+        </div>
       );
     case "hasError":
       console.error(contents);
       break;
     default:
-      console.log("??");
       break;
   }
 }
