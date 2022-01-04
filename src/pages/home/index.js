@@ -1,57 +1,68 @@
-import { useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-
+import { useEffect, useRef, useState } from "react";
 import {
-  getMoviesApi,
-  metaState,
-  moviesState,
-  querysState,
-} from "../../recoil/state";
+  useRecoilState,
+  useSetRecoilState,
+  useRecoilValueLoadable,
+} from "recoil";
+
+import { getMoviesApi, moviesState, querysState } from "../../recoil/state";
 
 import Movies from "../../components/home/Movies";
 
 function Home() {
-  const getApiDatas = useRecoilValue(getMoviesApi);
-  const setMetaState = useSetRecoilState(metaState);
+  const { contents, state } = useRecoilValueLoadable(getMoviesApi);
   const [movies, setMovies] = useRecoilState(moviesState);
-  const [querys, setQuery] = useRecoilState(querysState);
+  const [isInfinityState, setIsInfinityState] = useState(false);
+  const setQuerys = useSetRecoilState(querysState);
   const itemEnd = useRef();
 
-  // init api meta data
   useEffect(() => {
-    setMetaState({
-      totalPage: getApiDatas.total_pages,
-      totalResults: getApiDatas.total_results,
-    });
-  }, []);
+    if (state === "hasValue") {
+      setMovies((prev) => {
+        return [...prev, ...contents.results];
+      });
 
-  // re get api after change query
+      setIsInfinityState(true);
+    }
+  }, [state]);
+
   useEffect(() => {
-    setMovies((prev) => [...prev, ...getApiDatas.results]);
-  }, [querys]);
+    if (itemEnd.current !== undefined) {
+      const observer = new IntersectionObserver(
+        (entrise) => {
+          if (entrise[0].isIntersecting) {
+            setIsInfinityState(false);
+            setQuerys((prev) => ({
+              ...prev,
+              page: prev.page + 1,
+            }));
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(itemEnd.current);
+    }
+  }, [isInfinityState]);
 
-  // infinity scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entrise) => {
-        if (entrise[0].isIntersecting) {
-          setQuery((prev) => ({
-            ...prev,
-            page: prev.page + 1,
-          }));
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(itemEnd.current);
-  }, []);
+  switch (state) {
+    case "hasValue": {
+      return (
+        <>
+          <Movies movies={movies} />
+          <div style={{ height: 1 }} ref={itemEnd}></div>
+        </>
+      );
+    }
 
-  return (
-    <>
-      <Movies movies={movies} />
-      <div style={{ height: 1 }} ref={itemEnd}></div>
-    </>
-  );
+    case "loading":
+      return <Movies movies={movies} />;
+    case "hasError":
+      console.error(contents);
+      break;
+    default:
+      console.log("??");
+      break;
+  }
 }
 
 export default Home;
