@@ -18,8 +18,19 @@ function Home() {
 
   useEffect(() => {
     if (state === "hasValue") {
+      const currentMovies = contents.results;
+
       setMovies((prev) => {
-        return [...prev, ...contents.results];
+        const totalMovies = prev.concat(currentMovies);
+        const filterMovies = totalMovies.filter((movie, index) => {
+          return (
+            totalMovies.findIndex((movie2) => {
+              return movie.id === movie2.id;
+            }) === index
+          );
+        });
+
+        return filterMovies;
       });
 
       setIsInfinityState(true);
