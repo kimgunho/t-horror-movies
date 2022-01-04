@@ -31,3 +31,16 @@ export const getMoviesApi = selector({
     }
   },
 });
+
+export const getGenresApi = selector({
+  key: "getGenresApi",
+  get: async () => {
+    try {
+      const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=ko`;
+      const response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+});
