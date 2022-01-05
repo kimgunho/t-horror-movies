@@ -1,0 +1,35 @@
+@import "../Filter.module.scss";
+
+.genres {
+  margin-bottom: 1rem;
+
+  > .title {
+    color: #f0f0f0;
+    font-size: 0.85rem;
+    padding-bottom: 0.5rem;
+  }
+  > .items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    > li {
+      cursor: pointer;
+      margin: 0 0.5rem 0.5rem 0;
+      color: #333;
+      padding: 0.3rem 0.8rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      border-radius: 1rem;
+
+      &.checked {
+        background-color: $pointColor-purple;
+        color: #fff;
+      }
+    }
+  }
+}
