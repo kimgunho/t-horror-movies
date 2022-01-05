@@ -17,11 +17,15 @@ function Movies({ movies }) {
               ) : (
                 ""
               )}
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
-                draggable="false"
-              />
+              {movie.poster_path === null ? (
+                <p className={cx("notImg")}>이미지가 없습니다.</p>
+              ) : (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  draggable="false"
+                />
+              )}
             </div>
 
             <div className={cx("simpleInfo")}>

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Search() {
   return (
     <div className={cx("search")}>
-      <input type="text" placeholder="검색" />
+      <input type="text" placeholder="영화 검색" />
     </div>
   );
 }

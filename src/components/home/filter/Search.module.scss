@@ -1,0 +1,7 @@
+@import "../../../common.scss";
+
+.search {
+  > input {
+    @include textInput;
+  }
+}

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Watch() {
   return (
     <div className={cx("watch")}>
-      <h3>어디서 볼까요?</h3>
+      <h3 className={cx("title")}>어디서 볼까요?</h3>
       <ul>
         <li>netflix</li>
         <li>netflix</li>

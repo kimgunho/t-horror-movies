@@ -1,0 +1,20 @@
+@import "../../../common.scss";
+
+.watch {
+  > .title {
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    padding-bottom: 0.5rem;
+  }
+
+  > ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    > li {
+      width: 20%;
+    }
+  }
+}

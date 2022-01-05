@@ -3,9 +3,15 @@ import {
   useRecoilState,
   useSetRecoilState,
   useRecoilValueLoadable,
+  useRecoilValue,
 } from "recoil";
 
-import { getMoviesApi, moviesState, querysState } from "../../recoil/state";
+import {
+  getMoviesApi,
+  moviesState,
+  querysState,
+  pageState,
+} from "../../recoil/state";
 import "./index.scss";
 
 import Movies from "../../components/home/Movies";
@@ -15,8 +21,9 @@ import Skeleton from "../../components/shared/Skeleton";
 function Home() {
   const { contents, state } = useRecoilValueLoadable(getMoviesApi);
   const [movies, setMovies] = useRecoilState(moviesState);
-  const [isInfinityState, setIsInfinityState] = useState(false);
-  const setQuerys = useSetRecoilState(querysState);
+  const [loading, setLoading] = useState(true);
+  const querys = useRecoilValue(querysState);
+  const setPage = useSetRecoilState(pageState);
   const itemEnd = useRef();
 
   useEffect(() => {
@@ -31,31 +38,32 @@ function Home() {
               return movie.id === movie2.id;
             }) === index
         );
-
         return filterMovies;
       });
-
-      setIsInfinityState(true);
+      setLoading(false);
     }
   }, [state]);
 
   useEffect(() => {
-    if (itemEnd.current !== undefined) {
+    if (!loading) {
       const observer = new IntersectionObserver(
         (entrise) => {
           if (entrise[0].isIntersecting) {
-            setIsInfinityState(false);
-            setQuerys((prev) => ({
-              ...prev,
-              page: prev.page + 1,
-            }));
+            setLoading(true);
+            setPage((prev) => prev + 1);
           }
         },
         { threshold: 0 }
       );
       observer.observe(itemEnd.current);
     }
-  }, [isInfinityState]);
+  }, [loading]);
+
+  useEffect(() => {
+    setMovies([]);
+    setPage(1);
+    setLoading(true);
+  }, [querys]);
 
   switch (state) {
     case "hasValue": {

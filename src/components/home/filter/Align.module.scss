@@ -1,0 +1,7 @@
+@import "../../../common.scss";
+
+.align {
+  > select {
+    @include textInput;
+  }
+}

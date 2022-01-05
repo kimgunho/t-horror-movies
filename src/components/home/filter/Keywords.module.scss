@@ -1,0 +1,48 @@
+@import "../../../common.scss";
+
+.keywords {
+  margin-bottom: 1rem;
+
+  > .title {
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    padding-bottom: 0.5rem;
+  }
+
+  > .keywordSearch {
+    @include textInput;
+  }
+
+  > ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+
+    > li {
+      color: #f0f0f0;
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 0 1rem 0.5rem 0;
+
+      &.checked {
+        color: $pointColor-purple;
+      }
+    }
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > button {
+      border: 0;
+      padding: 0.3rem 0.5rem;
+      background-color: #f0f0f0;
+      color: #111;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+  }
+}

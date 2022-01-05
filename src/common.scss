@@ -8,6 +8,15 @@ $normalPadding: 20px;
 // color ins
 $pointColor-purple: #713bda;
 
+@mixin textInput {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: #111;
+  border: 0;
+}
+
 // responsive size
 @mixin mobile {
   @media screen and (max-width: #{$breakpoint-mobile}) {
