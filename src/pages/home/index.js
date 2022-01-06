@@ -29,6 +29,11 @@ function Home() {
   useEffect(() => {
     if (state === "hasValue") {
       const currentMovies = contents.results;
+      // console.log(currentMovies.length);
+      // if (currentMovies.length < 20) {
+      //   setMovies(currentMovies);
+      //   return;
+      // }
 
       setMovies((prev) => {
         const totalMovies = prev.concat(currentMovies);
@@ -63,6 +68,7 @@ function Home() {
     setMovies([]);
     setPage(1);
     setLoading(true);
+    window.scrollTo(0, 0);
   }, [querys]);
 
   switch (state) {
@@ -88,6 +94,7 @@ function Home() {
           <Filter />
         </div>
       );
+
     case "hasError":
       console.error(contents);
       break;
