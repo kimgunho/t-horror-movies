@@ -25,6 +25,11 @@ export const moviesState = atom({
   default: [],
 });
 
+export const scoreState = atom({
+  key: "scoreState",
+  default: 7,
+});
+
 export const getMoviesApi = selector({
   key: "getMoviesApi",
   get: async ({ get }) => {

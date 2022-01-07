@@ -1,0 +1,40 @@
+@import "../../../common.scss";
+
+.score {
+  margin-bottom: 1rem;
+
+  > .title {
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    padding-bottom: 0.5rem;
+
+    > .activeScore {
+      color: #fdba00;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+
+  > ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    > li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: #f0f0f0;
+      color: #111;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &.active {
+        background-color: #713bda;
+        color: #fff;
+      }
+    }
+  }
+}

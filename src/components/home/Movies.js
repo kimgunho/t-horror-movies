@@ -1,19 +1,23 @@
 import classNames from "classnames/bind";
+import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 
 import styles from "./Movies.module.scss";
+import { scoreState } from "../../recoil/state";
 
 const cx = classNames.bind(styles);
 
 function Movies({ movies }) {
+  const score = useRecoilValue(scoreState);
+
   return (
     <ul className={cx("items")}>
       {movies?.map((movie) => (
         <li key={movie.id}>
           <Link to={`/${movie.id}`}>
             <div className={cx("image")}>
-              {movie.vote_average >= 7 ? (
-                <p className={cx("highScore")}>평점높음</p>
+              {movie.vote_average >= score ? (
+                <p className={cx("highScore")}>{score}점 이상</p>
               ) : (
                 ""
               )}

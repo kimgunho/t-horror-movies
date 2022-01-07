@@ -7,6 +7,7 @@ import { numberTextFormat } from "../../utils/format";
 
 import Search from "./filter/Search";
 import Align from "./filter/Align";
+import Score from "./filter/Score";
 import Genres from "./filter/Genres";
 import Keywords from "./filter/Keywords";
 import Watch from "./filter/Watch";
@@ -27,6 +28,7 @@ function Filter() {
       <Align />
       <div className={cx("filter")}>
         <h2>필터 검색</h2>
+        <Score />
         <Genres />
         <Keywords />
         <Watch />
