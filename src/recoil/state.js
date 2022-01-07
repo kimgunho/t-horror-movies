@@ -7,6 +7,7 @@ export const querysState = atom({
     lang: "ko",
     defaultGenres: "27",
     genres: "",
+    watch: "",
   },
 });
 
@@ -36,12 +37,12 @@ export const getMoviesApi = selector({
     try {
       const querys = get(querysState);
       const page = get(pageState);
-      const { defaultGenres, sort, lang, genres } = querys;
+      const { watch, defaultGenres, sort, lang, genres } = querys;
       const url = `https://api.themoviedb.org/3/discover/movie?api_key=${
         process.env.REACT_APP_API_KEY
       }&language=${lang}&sort_by=${sort}&with_genres=${defaultGenres}${
         genres === "" ? `` : `,${genres}`
-      }&include_adult=false&include_video=false&page=${page}`;
+      }&include_adult=false&include_video=false&page=${page}&with_watch_providers=${watch}&watch_region=KR`;
       const response = await fetch(url);
       return await response.json();
     } catch (error) {
@@ -77,6 +78,19 @@ export const getKeywordsApi = selector({
     try {
       const { page, query } = get(keywordQueryState);
       const url = `https://api.themoviedb.org/3/search/keyword?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&page=${page}`;
+      const response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  },
+});
+
+export const watchState = selector({
+  key: "watchState",
+  get: async () => {
+    try {
+      const url = `https://api.themoviedb.org/3/watch/providers/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&watch_region=KR`;
       const response = await fetch(url);
       return await response.json();
     } catch (error) {

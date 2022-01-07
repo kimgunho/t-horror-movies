@@ -14,7 +14,20 @@
     flex-wrap: wrap;
 
     > li {
-      width: 20%;
+      cursor: pointer;
+      line-height: 0;
+      width: 2rem;
+      margin: 0 3px 3px 0;
+      position: relative;
+      background-color: #713bda;
+
+      > img {
+        width: 100%;
+
+        &.checked {
+          opacity: 0.4;
+        }
+      }
     }
   }
 }
