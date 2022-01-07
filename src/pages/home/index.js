@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValueLoadable, useRecoilValue } from "recoil";
 
 import {
@@ -21,6 +21,7 @@ function Home() {
   const [meta, setMeta] = useRecoilState(metaState);
   const [page, setPage] = useRecoilState(pageState);
   const querys = useRecoilValue(querysState);
+  const scrollModel = useRef();
 
   useEffect(() => {
     if (state === "hasValue") {
@@ -46,8 +47,8 @@ function Home() {
 
   useEffect(() => {
     setMovies([]);
+    scrollModel.current.scrollTop = 0;
     setPage(1);
-    window.scrollTo(0, 0);
   }, [querys]);
 
   const onScroll = (event) => {
@@ -62,7 +63,7 @@ function Home() {
 
   return (
     <>
-      <div className="container" onScroll={onScroll}>
+      <div ref={scrollModel} className="container" onScroll={onScroll}>
         <div className="contents">
           <Movies movies={movies} />
           {state === "loading" ? <Skeleton /> : ""}

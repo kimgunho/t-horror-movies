@@ -27,7 +27,6 @@ function MoviesCount({ total }) {
 
   const getMoviesCount = () => {
     if (total !== undefined) {
-      console.log(movies.length);
       const moviesCount = movies.length;
       setResultCount(total - moviesCount);
     }
