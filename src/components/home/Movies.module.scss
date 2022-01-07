@@ -11,14 +11,29 @@
     width: 20%;
     position: relative;
 
+    @include tablet {
+      width: 25%;
+    }
+
+    @include mobile {
+      width: 33%;
+    }
+
     > a {
       > .image {
         z-index: 10;
         position: relative;
         overflow: hidden;
         width: 100%;
-        height: 20vw;
+        height: 30vh;
         box-shadow: inset 0px -50px 60px 0px #000000b0;
+
+        @include tablet {
+          height: 25vh;
+        }
+
+        @include mobile {
+        }
 
         > .highScore {
           background-color: #fdba00;
@@ -42,7 +57,7 @@
         > img {
           position: absolute;
           width: auto;
-          height: 31vw;
+          height: 35vw;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
