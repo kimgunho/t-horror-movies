@@ -60,41 +60,19 @@ function Home() {
     }
   };
 
-  switch (state) {
-    case "hasValue": {
-      return (
-        <>
-          <div className="container" onScroll={onScroll}>
-            <div className="contents">
-              <Movies movies={movies} />
-            </div>
-            <Filter />
-          </div>
-          <MoviesCount />
-        </>
-      );
-    }
-
-    case "loading":
-      return (
-        <>
-          <div className="container">
-            <div className="contents">
-              <Movies movies={movies} />
-              <Skeleton />
-            </div>
-            <Filter />
-          </div>
-          <MoviesCount />
-        </>
-      );
-
-    case "hasError":
-      console.error(contents);
-      break;
-    default:
-      break;
-  }
+  return (
+    <>
+      <div className="container" onScroll={onScroll}>
+        <div className="contents">
+          <Movies movies={movies} />
+          {state === "loading" ? <Skeleton /> : ""}
+        </div>
+        <Filter />
+      </div>
+      <MoviesCount />
+      {state === "hasError" ? <div>문제가 생겼습니다.</div> : ""}
+    </>
+  );
 }
 
 export default Home;
