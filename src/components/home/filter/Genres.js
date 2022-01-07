@@ -21,7 +21,6 @@ function Genres() {
         setGenres(contents.genres);
         break;
       case "loading":
-        console.log("loading");
         break;
       case "hasError":
         console.error("error");
@@ -48,7 +47,7 @@ function Genres() {
         dataset: { id },
       },
     } = event;
-    handleClassToggle(id);
+
     if (id !== undefined) {
       if (!arr.includes(id)) {
         setArr((prev) => [...prev, id]);
@@ -58,6 +57,8 @@ function Genres() {
         });
       }
     }
+
+    handleClassToggle(id);
   };
 
   const handleClassToggle = (id) => {

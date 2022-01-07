@@ -1,39 +1,35 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  useRecoilState,
-  useSetRecoilState,
-  useRecoilValueLoadable,
-  useRecoilValue,
-} from "recoil";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValueLoadable, useRecoilValue } from "recoil";
 
 import {
   getMoviesApi,
   moviesState,
   querysState,
   pageState,
+  metaState,
 } from "../../recoil/state";
 import "./index.scss";
 
 import Movies from "../../components/home/Movies";
 import Filter from "../../components/home/Filter";
+import MoviesCount from "../../components/home/MoviesCount";
 import Skeleton from "../../components/shared/Skeleton";
 
 function Home() {
   const { contents, state } = useRecoilValueLoadable(getMoviesApi);
   const [movies, setMovies] = useRecoilState(moviesState);
-  const [loading, setLoading] = useState(true);
+  const [meta, setMeta] = useRecoilState(metaState);
+  const [page, setPage] = useRecoilState(pageState);
   const querys = useRecoilValue(querysState);
-  const setPage = useSetRecoilState(pageState);
-  const itemEnd = useRef();
 
   useEffect(() => {
     if (state === "hasValue") {
       const currentMovies = contents.results;
-      // console.log(currentMovies.length);
-      // if (currentMovies.length < 20) {
-      //   setMovies(currentMovies);
-      //   return;
-      // }
+
+      setMeta({
+        total_pages: contents.total_pages,
+        total_results: contents.total_results,
+      });
 
       setMovies((prev) => {
         const totalMovies = prev.concat(currentMovies);
@@ -45,54 +41,52 @@ function Home() {
         );
         return filterMovies;
       });
-      setLoading(false);
     }
   }, [state]);
 
   useEffect(() => {
-    if (!loading) {
-      const observer = new IntersectionObserver(
-        (entrise) => {
-          if (entrise[0].isIntersecting) {
-            setLoading(true);
-            setPage((prev) => prev + 1);
-          }
-        },
-        { threshold: 0 }
-      );
-      observer.observe(itemEnd.current);
-    }
-  }, [loading]);
-
-  useEffect(() => {
     setMovies([]);
     setPage(1);
-    setLoading(true);
     window.scrollTo(0, 0);
   }, [querys]);
+
+  const onScroll = (event) => {
+    const { scrollHeight, scrollTop, clientHeight } = event.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) {
+      if (meta.total_pages === page) {
+        return;
+      }
+      setPage(page + 1);
+    }
+  };
 
   switch (state) {
     case "hasValue": {
       return (
-        <div className="container">
-          <div className="contents">
-            <Movies movies={movies} />
-            <div style={{ height: 1 }} ref={itemEnd}></div>
+        <>
+          <div className="container" onScroll={onScroll}>
+            <div className="contents">
+              <Movies movies={movies} />
+            </div>
+            <Filter />
           </div>
-          <Filter />
-        </div>
+          <MoviesCount />
+        </>
       );
     }
 
     case "loading":
       return (
-        <div className="container">
-          <div className="contents">
-            <Movies movies={movies} />
-            <Skeleton />
+        <>
+          <div className="container">
+            <div className="contents">
+              <Movies movies={movies} />
+              <Skeleton />
+            </div>
+            <Filter />
           </div>
-          <Filter />
-        </div>
+          <MoviesCount />
+        </>
       );
 
     case "hasError":

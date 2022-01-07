@@ -5,7 +5,7 @@ export const querysState = atom({
   default: {
     sort: "popularity.desc",
     lang: "ko",
-    defaultGenre: "27",
+    defaultGenres: "27",
     genres: "",
   },
 });
@@ -31,10 +31,10 @@ export const getMoviesApi = selector({
     try {
       const querys = get(querysState);
       const page = get(pageState);
-      const { defaultGenre, sort, lang, genres } = querys;
+      const { defaultGenres, sort, lang, genres } = querys;
       const url = `https://api.themoviedb.org/3/discover/movie?api_key=${
         process.env.REACT_APP_API_KEY
-      }&language=${lang}&sort_by=${sort}&with_genres=${defaultGenre}${
+      }&language=${lang}&sort_by=${sort}&with_genres=${defaultGenres}${
         genres === "" ? `` : `,${genres}`
       }&include_adult=false&include_video=false&page=${page}`;
       const response = await fetch(url);

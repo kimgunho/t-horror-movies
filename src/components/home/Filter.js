@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import classNames from "classnames/bind";
 
 import styles from "./Filter.module.scss";
+import { metaState } from "../../recoil/state";
 
 import Search from "./filter/Search";
 import Align from "./filter/Align";
@@ -12,16 +13,19 @@ import Watch from "./filter/Watch";
 const cx = classNames.bind(styles);
 
 function Filter() {
-  const [top, setTop] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.scrollY > 80 ? setTop(window.scrollY - 80) : setTop(0);
-    });
-  }, []);
+  const totalResults = useRecoilValue(metaState);
 
   return (
-    <div style={{ top }} className={cx("filterBox")}>
+    <div className={cx("filterBox")}>
+      <h2 className={cx("total")}>
+        {totalResults.total_results
+          ? String(totalResults.total_results).replace(
+              /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+              ","
+            )
+          : totalResults.total_results}
+        개의 영화를 찾았습니다.
+      </h2>
       <Search />
       <Align />
       <div className={cx("filter")}>
