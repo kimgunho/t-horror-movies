@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+
+import { moviesState, querysState } from "../../recoil/state";
+
 const style = {
   height: `5vh`,
   width: `calc(100% - 25rem)`,
@@ -7,10 +12,31 @@ const style = {
   lineHeight: `5vh`,
 };
 
-function MoviesCount() {
+function MoviesCount({ total }) {
+  const [resultCount, setResultCount] = useState(0);
+  const movies = useRecoilValue(moviesState);
+  const querys = useRecoilValue(querysState);
+
+  useEffect(() => {
+    getMoviesCount();
+  });
+
+  useEffect(() => {
+    getMoviesCount();
+  }, [movies, querys]);
+
+  const getMoviesCount = () => {
+    if (total !== undefined) {
+      console.log(movies.length);
+      const moviesCount = movies.length;
+      setResultCount(total - moviesCount);
+    }
+  };
+
   return (
     <div style={style} className="countAlert">
-      0개의 영화가 남아있습니다.
+      {String(resultCount).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}개의
+      영화가 남아있습니다.
     </div>
   );
 }

@@ -69,7 +69,7 @@ function Home() {
         </div>
         <Filter />
       </div>
-      <MoviesCount />
+      <MoviesCount total={meta.total_results} />
       {state === "hasError" ? <div>문제가 생겼습니다.</div> : ""}
     </>
   );
