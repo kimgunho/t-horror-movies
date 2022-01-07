@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
 import { moviesState, querysState } from "../../recoil/state";
+import { numberTextFormat } from "../../utils/format";
 
 const style = {
   height: `5vh`,
@@ -34,8 +35,7 @@ function MoviesCount({ total }) {
 
   return (
     <div style={style} className="countAlert">
-      {String(resultCount).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}개의
-      영화가 남아있습니다.
+      {numberTextFormat(resultCount)}개의 영화가 남아있습니다.
     </div>
   );
 }

@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 
 import styles from "./Filter.module.scss";
 import { metaState } from "../../recoil/state";
+import { numberTextFormat } from "../../utils/format";
 
 import Search from "./filter/Search";
 import Align from "./filter/Align";
@@ -13,17 +14,13 @@ import Watch from "./filter/Watch";
 const cx = classNames.bind(styles);
 
 function Filter() {
-  const totalResults = useRecoilValue(metaState);
+  const meta = useRecoilValue(metaState);
+  const { total_results } = meta;
 
   return (
     <div className={cx("filterBox")}>
       <h2 className={cx("total")}>
-        {totalResults.total_results
-          ? String(totalResults.total_results).replace(
-              /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-              ","
-            )
-          : totalResults.total_results}
+        {total_results ? numberTextFormat(total_results) : total_results}
         개의 영화를 찾았습니다.
       </h2>
       <Search />
