@@ -1,8 +1,9 @@
 @import "../../common.scss";
 
 .container {
+  width: calc(100% - 4rem);
   position: relative;
-  height: 95vh;
+  height: 100vh;
   overflow-y: scroll;
 
   > .contents {

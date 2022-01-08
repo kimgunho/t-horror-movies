@@ -12,7 +12,6 @@ import "./index.scss";
 
 import Movies from "../../components/home/Movies";
 import Filter from "../../components/home/Filter";
-import MoviesCount from "../../components/home/MoviesCount";
 import Skeleton from "../../components/shared/Skeleton";
 
 function Home() {
@@ -70,9 +69,8 @@ function Home() {
           {state === "loading" ? <Skeleton /> : ""}
         </div>
         <Filter />
+        {state === "hasError" ? <div>문제가 생겼습니다.</div> : ""}
       </div>
-      <MoviesCount total={meta.total_results} />
-      {state === "hasError" ? <div>문제가 생겼습니다.</div> : ""}
     </>
   );
 }
