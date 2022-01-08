@@ -1,49 +1,42 @@
 @import "../../common.scss";
 
-.items {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+li {
+  width: 20%;
+  position: relative;
 
-  > li {
-    width: 20%;
+  > .image {
+    z-index: 10;
     position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 20vw;
+    background-image: linear-gradient(-45deg, #f0f0f0, #000000b0, #f0f0f0);
+    background-size: 400% 400%;
+    animation: backgroundAnimation 3s ease infinite;
 
-    > .image {
-      z-index: 10;
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 20vw;
-      background-image: linear-gradient(-45deg, #f0f0f0, #000000b0, #f0f0f0);
-      background-size: 400% 400%;
-      animation: backgroundAnimation 3s ease infinite;
-
-      @keyframes backgroundAnimation {
-        0% {
-          background-position: 100% 0%;
-        }
-        50% {
-          background-position: 0% 50%;
-        }
-        100% {
-          background-position: 100% 0%;
-        }
+    @keyframes backgroundAnimation {
+      0% {
+        background-position: 100% 0%;
+      }
+      50% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 0%;
       }
     }
+  }
 
-    > .simpleInfo {
-      position: absolute;
-      box-shadow: inset 0px -50px 60px 0px #000000b0;
-      z-index: 20;
-      padding: $normalPadding;
-      box-sizing: border-box;
-      width: 100%;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  > .simpleInfo {
+    position: absolute;
+    box-shadow: inset 0px -50px 60px 0px #000000b0;
+    z-index: 20;
+    padding: $normalPadding;
+    box-sizing: border-box;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }

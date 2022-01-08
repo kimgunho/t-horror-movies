@@ -7,12 +7,12 @@ import {
   querysState,
   pageState,
   metaState,
+  scoreState,
 } from "../../recoil/state";
 import "./index.scss";
 
 import Movies from "../../components/home/Movies";
 import Filter from "../../components/home/Filter";
-import Skeleton from "../../components/shared/Skeleton";
 
 function Home() {
   const { contents, state } = useRecoilValueLoadable(getMoviesApi);
@@ -20,6 +20,7 @@ function Home() {
   const [meta, setMeta] = useRecoilState(metaState);
   const [page, setPage] = useRecoilState(pageState);
   const querys = useRecoilValue(querysState);
+  const score = useRecoilValue(scoreState);
   const scrollModel = useRef();
 
   useEffect(() => {
@@ -65,8 +66,11 @@ function Home() {
     <>
       <div ref={scrollModel} className="container" onScroll={onScroll}>
         <div className="contents">
-          <Movies movies={movies} />
-          {state === "loading" ? <Skeleton /> : ""}
+          <Movies
+            movies={movies}
+            score={score}
+            loading={state === "loading" ? true : false}
+          />
         </div>
         <Filter />
         {state === "hasError" ? <div>문제가 생겼습니다.</div> : ""}

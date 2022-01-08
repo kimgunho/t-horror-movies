@@ -6,15 +6,14 @@ const cx = classNames.bind(styles);
 
 function Skeleton() {
   return (
-    <ul className={cx("items")}>
+    <>
       {Array.from(Array(20)).map((_, index) => (
-        <li key={index}>
+        <li className={cx("skeleton")} key={index}>
           <div className={cx("image")}></div>
-
           <div className={cx("simpleInfo")}></div>
         </li>
       ))}
-    </ul>
+    </>
   );
 }
 

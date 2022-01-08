@@ -1,15 +1,13 @@
 import classNames from "classnames/bind";
-import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 
 import styles from "./Movies.module.scss";
-import { scoreState } from "../../recoil/state";
+
+import Skeleton from "../shared/Skeleton";
 
 const cx = classNames.bind(styles);
 
-function Movies({ movies }) {
-  const score = useRecoilValue(scoreState);
-
+function Movies({ movies, score, loading }) {
   return (
     <ul className={cx("items")}>
       {movies?.map((movie) => (
@@ -39,6 +37,7 @@ function Movies({ movies }) {
           </Link>
         </li>
       ))}
+      {loading ? <Skeleton /> : ""}
     </ul>
   );
 }

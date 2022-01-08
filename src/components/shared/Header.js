@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
-import { FiHome, FiFilm, FiSearch } from "react-icons/fi";
+import { FiHome, FiFilm, FiSearch, FiHeart } from "react-icons/fi";
 
 import styles from "./Header.module.scss";
 import { links } from "../../links";
@@ -24,6 +24,11 @@ function Header() {
         <li>
           <Link to={links.search}>
             <FiSearch />
+          </Link>
+        </li>
+        <li>
+          <Link to={links.search}>
+            <FiHeart />
           </Link>
         </li>
       </ul>
