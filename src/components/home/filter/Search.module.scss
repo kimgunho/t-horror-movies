@@ -1,7 +1,23 @@
 @import "../../../common.scss";
 
 .search {
-  > input {
-    @include textInput;
+  > form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .text {
+      @include textInput;
+      width: calc(100% - 3rem);
+    }
+    > .submit {
+      width: 3rem;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+      border: 0;
+      background-color: $pointColor-purple;
+      cursor: pointer;
+      color: #fff;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import {
   useRecoilState,
   useRecoilValueLoadable,
@@ -47,7 +47,7 @@ function Keywords() {
     setKeywordQuery((prev) => ({
       ...prev,
       page: 1,
-      query: value,
+      query: value.replace(/[^A-Za-z]/gi, ""),
     }));
     if (value === "") {
       setQureys((prev) => ({

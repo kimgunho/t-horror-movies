@@ -5,7 +5,6 @@ import styles from "./Filter.module.scss";
 import { metaState } from "../../recoil/state";
 import { numberTextFormat } from "../../utils/format";
 
-import Search from "./filter/Search";
 import Align from "./filter/Align";
 import Score from "./filter/Score";
 import Genres from "./filter/Genres";
@@ -24,7 +23,6 @@ function Filter() {
         {total_results ? numberTextFormat(total_results) : total_results}
         개의 영화를 찾았습니다.
       </h2>
-      <Search />
       <Align />
       <div className={cx("filter")}>
         <h2>필터 검색</h2>

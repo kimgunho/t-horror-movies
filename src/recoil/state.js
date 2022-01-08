@@ -44,7 +44,8 @@ export const getMoviesApi = selector({
         process.env.REACT_APP_API_KEY
       }&language=${lang}&sort_by=${sort}&with_genres=${defaultGenres}${
         genres === "" ? `` : `,${genres}`
-      }&include_adult=false&include_video=false&page=${page}&with_keywords=${with_keywords}&with_watch_providers=${watch}&watch_region=KR`;
+      }&include_adult=true&include_video=false&page=${page}&with_keywords=${with_keywords}&with_watch_providers=${watch}&watch_region=KR`;
+
       const response = await fetch(url);
       return await response.json();
     } catch (error) {

@@ -40,6 +40,7 @@ function Home() {
               return movie.id === movie2.id;
             }) === index
         );
+
         return filterMovies;
       });
     }
@@ -47,8 +48,8 @@ function Home() {
 
   useEffect(() => {
     setMovies([]);
-    scrollModel.current.scrollTop = 0;
     setPage(1);
+    scrollModel.current.scrollTop = 0;
   }, [querys]);
 
   const onScroll = (event) => {
