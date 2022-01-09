@@ -17,9 +17,9 @@ import {
 const cx = classNames.bind(styles);
 
 function Keywords() {
+  const { state, contents } = useRecoilValueLoadable(getKeywordSearchApi);
   const [keywordQuery, setKeywordQuery] = useRecoilState(keywordQuerysState);
   const [keywordMeta, setKeywordMeta] = useRecoilState(keywordsTotalState);
-  const { state, contents } = useRecoilValueLoadable(getKeywordSearchApi);
   const setQureys = useSetRecoilState(querysState);
   const [keywords, setKeywords] = useState([]);
 
@@ -90,7 +90,12 @@ function Keywords() {
   return (
     <div className={cx("keywords")}>
       <h3 className={cx("title")}>관련 키워드(영문)로 찾기</h3>
-      <input onChange={onChange} className={cx("keywordSearch")} type="text" />
+      <input
+        onChange={onChange}
+        className={cx("keywordSearch")}
+        type="text"
+        placeholder="영문 입력"
+      />
       <p className={cx("currentKeyword")}>
         {keywordQuery.query !== ""
           ? `${keywordQuery.query}관련 키워드 / ${keywordMeta.totalResults}개의 결과`

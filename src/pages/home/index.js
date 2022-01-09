@@ -11,7 +11,7 @@ import {
 } from "../../recoil/state";
 import "./index.scss";
 
-import Movies from "../../components/home/Movies";
+import Movies from "../../components/shared/Movies";
 import Filter from "../../components/home/Filter";
 
 function Home() {

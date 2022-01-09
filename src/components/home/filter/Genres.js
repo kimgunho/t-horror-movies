@@ -11,7 +11,7 @@ function Genres() {
   const { state, contents } = useRecoilValueLoadable(getGenresApi);
   const setQuerys = useSetRecoilState(querysState);
   const [genres, setGenres] = useState([]);
-  const [arr, setArr] = useState([]);
+  const [selectGenres, setSelectGenres] = useState([]);
   const [genresString, setGenresString] = useState("");
   const [classToggle, setClassToggle] = useState({});
 
@@ -31,8 +31,8 @@ function Genres() {
   }, [state]);
 
   useEffect(() => {
-    setGenresString(arr.toString(","));
-  }, [arr]);
+    setGenresString(selectGenres.toString(","));
+  }, [selectGenres]);
 
   useEffect(() => {
     setQuerys((prev) => ({
@@ -49,10 +49,10 @@ function Genres() {
     } = event;
 
     if (id !== undefined) {
-      if (!arr.includes(id)) {
-        setArr((prev) => [...prev, id]);
+      if (!selectGenres.includes(id)) {
+        setSelectGenres((prev) => [...prev, id]);
       } else {
-        setArr((prev) => {
+        setSelectGenres((prev) => {
           return [...prev, id].filter((genre) => genre !== id);
         });
       }
@@ -73,6 +73,7 @@ function Genres() {
       <h3 className={cx("title")}>중복 장르별 찾기</h3>
       <ul className={cx("items")} onClick={handleGenresId}>
         {genres.map((genre) => {
+          // 27 === genres horror id
           if (genre.id === 27) {
             return;
           }

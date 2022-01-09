@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { links } from "./links";
+import { links } from "./assets/data/links";
 
 import Header from "./components/shared/Header";
 import Home from "./pages/home";

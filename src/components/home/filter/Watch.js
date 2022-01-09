@@ -8,11 +8,10 @@ import { watchState, querysState } from "../../../recoil/state";
 const cx = classNames.bind(styles);
 
 function Watch() {
-  const watchs = useRecoilValueLoadable(watchState);
-  const { state, contents } = watchs;
+  const { state, contents } = useRecoilValueLoadable(watchState);
   const setQuerys = useSetRecoilState(querysState);
   const [watch, setWatch] = useState([]);
-  const [arr, setArr] = useState([]);
+  const [selectWatchs, setSelectWatchs] = useState([]);
   const [watchString, setWatchString] = useState("");
   const [classToggle, setClassToggle] = useState({});
 
@@ -32,8 +31,8 @@ function Watch() {
   }, [state]);
 
   useEffect(() => {
-    setWatchString(arr.toString(","));
-  }, [arr]);
+    setWatchString(selectWatchs.toString(","));
+  }, [selectWatchs]);
 
   useEffect(() => {
     setQuerys((prev) => ({
@@ -45,10 +44,10 @@ function Watch() {
   const handleGetWatchQuery = (event) => {
     const { id } = event.target.dataset;
     if (id !== undefined) {
-      if (!arr.includes(id)) {
-        setArr((prev) => [...prev, id]);
+      if (!selectWatchs.includes(id)) {
+        setSelectWatchs((prev) => [...prev, id]);
       } else {
-        setArr((prev) => {
+        setSelectWatchs((prev) => {
           return [...prev, id].filter((watch) => watch !== id);
         });
       }

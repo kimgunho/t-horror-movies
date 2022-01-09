@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Movies.module.scss";
 
-import Skeleton from "../shared/Skeleton";
+import Skeleton from "./Skeleton";
 
 const cx = classNames.bind(styles);
 
