@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import classNames from "classnames/bind";
 
 import styles from "./Score.module.scss";
-import { scoreState } from "../../../recoil/state";
+import { scoreState } from "../../../recoil/homeState";
 import { scoreData } from "../../../assets/data/score";
 
 const cx = classNames.bind(styles);

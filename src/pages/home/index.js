@@ -1,3 +1,4 @@
+import classNames from "classnames/bind";
 import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValueLoadable, useRecoilValue } from "recoil";
 
@@ -8,11 +9,13 @@ import {
   pageState,
   metaState,
   scoreState,
-} from "../../recoil/state";
-import "./index.scss";
+} from "../../recoil/homeState";
+import styles from "./index.module.scss";
 
 import Movies from "../../components/shared/Movies";
 import Filter from "../../components/home/Filter";
+
+const cx = classNames.bind(styles);
 
 function Home() {
   const { contents, state } = useRecoilValueLoadable(getMoviesApi);
@@ -64,8 +67,8 @@ function Home() {
 
   return (
     <>
-      <div ref={scrollModel} className="container" onScroll={onScroll}>
-        <div className="contents">
+      <div ref={scrollModel} className={cx("container")} onScroll={onScroll}>
+        <div className={cx("contents")}>
           <Movies
             movies={movies}
             score={score}

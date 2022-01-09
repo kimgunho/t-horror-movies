@@ -12,7 +12,7 @@ import {
   getKeywordSearchApi,
   querysState,
   keywordsTotalState,
-} from "../../../recoil/state";
+} from "../../../recoil/homeState";
 
 const cx = classNames.bind(styles);
 

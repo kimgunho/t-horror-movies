@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { useRecoilValueLoadable, useSetRecoilState } from "recoil";
 
 import styles from "./Genres.module.scss";
-import { getGenresApi, querysState } from "../../../recoil/state";
+import { getGenresApi, querysState } from "../../../recoil/homeState";
 
 const cx = classNames.bind(styles);
 

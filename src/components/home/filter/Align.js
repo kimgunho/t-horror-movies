@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import { useSetRecoilState } from "recoil";
 
 import styles from "./Align.module.scss";
-import { querysState } from "../../../recoil/state";
+import { querysState } from "../../../recoil/homeState";
 
 const cx = classNames.bind(styles);
 

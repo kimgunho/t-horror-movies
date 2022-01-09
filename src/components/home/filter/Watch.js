@@ -3,7 +3,7 @@ import { useRecoilValueLoadable, useSetRecoilState } from "recoil";
 import classNames from "classnames/bind";
 
 import styles from "./Watch.module.scss";
-import { watchState, querysState } from "../../../recoil/state";
+import { watchState, querysState } from "../../../recoil/homeState";
 
 const cx = classNames.bind(styles);
 

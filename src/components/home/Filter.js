@@ -2,7 +2,7 @@ import { useRecoilValue } from "recoil";
 import classNames from "classnames/bind";
 
 import styles from "./Filter.module.scss";
-import { metaState } from "../../recoil/state";
+import { metaState } from "../../recoil/homeState";
 import { numberTextFormat } from "../../utils/format";
 
 import Align from "./filter/Align";
