@@ -15,9 +15,11 @@
     flex-wrap: wrap;
 
     > li {
+      white-space: nowrap;
       cursor: pointer;
       margin: 0 0.5rem 0.5rem 0;
       color: #333;
+      font-size: 0.95rem;
       padding: 0.3rem 0.8rem;
       box-sizing: border-box;
       display: flex;

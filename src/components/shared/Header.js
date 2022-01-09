@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
-import { FiHome } from "react-icons/fi";
+import { FiFilm } from "react-icons/fi";
 
 import styles from "./Header.module.scss";
 import { links } from "../../assets/data/links";
@@ -11,12 +11,12 @@ const cx = classNames.bind(styles);
 function Header() {
   return (
     <header className={cx("header")}>
-      <h1>
+      <h1 className={cx("logo")}>
         <Link to={links.home}>
-          <FiHome />
+          <FiFilm />
         </Link>
       </h1>
-      <ul>
+      <ul className={cx("gnb")}>
         {gnb.map((page, index) => (
           <li key={index}>
             <Link to={page.link}>{page.icon}</Link>

@@ -2,4 +2,28 @@
 
 .header {
   width: 4rem;
+
+  > .logo {
+    @include flexCenter;
+
+    > a {
+      color: $pointColor-purple;
+      font-size: 1.45rem;
+      padding: 1rem 0;
+    }
+  }
+
+  > .gnb {
+    @include flexCenter;
+    flex-direction: column;
+
+    > li {
+      > a {
+        display: block;
+        padding-bottom: 1rem;
+        color: $pointColor-purple;
+        font-size: 1.45rem;
+      }
+    }
+  }
 }

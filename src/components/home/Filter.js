@@ -21,7 +21,7 @@ function Filter() {
     <div className={cx("filterBox")}>
       <h2 className={cx("total")}>
         {total_results ? numberTextFormat(total_results) : total_results}
-        개의 결과를 찾았습니다.
+        개의 공포영화를 찾았습니다.
       </h2>
       <Align />
       <div className={cx("filter")}>

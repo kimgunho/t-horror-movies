@@ -29,11 +29,15 @@
     > li {
       color: #f0f0f0;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       padding: 0 1rem 0.5rem 0;
 
       &.checked {
         color: $pointColor-purple;
+      }
+
+      &::before {
+        content: "#";
       }
     }
   }

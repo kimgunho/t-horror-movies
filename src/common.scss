@@ -17,6 +17,12 @@ $pointColor-purple: #713bda;
   border: 0;
 }
 
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // responsive size
 @mixin mobile {
   @media screen and (max-width: #{$breakpoint-mobile}) {

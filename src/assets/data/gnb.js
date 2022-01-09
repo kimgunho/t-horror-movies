@@ -3,11 +3,6 @@ import { FiFilm, FiSearch, FiHeart } from "react-icons/fi";
 
 export const gnb = [
   {
-    title: "movies",
-    link: links.home,
-    icon: <FiFilm />,
-  },
-  {
     title: "search",
     link: links.search,
     icon: <FiSearch />,
