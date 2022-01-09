@@ -1,5 +1,6 @@
 export const links = {
   home: "/",
   search: "/search",
-  detail: "/:id",
+  detail: "/movie/:id",
+  myMovies: "/myMovies",
 };

@@ -12,7 +12,7 @@ function Movies({ movies, score, loading }) {
     <ul className={cx("items")}>
       {movies?.map((movie) => (
         <li key={movie.id}>
-          <Link to={`/${movie.id}`}>
+          <Link to={`/movie/${movie.id}`}>
             <div className={cx("image")}>
               {movie.vote_average >= score ? (
                 <p className={cx("highScore")}>{score}점 이상</p>

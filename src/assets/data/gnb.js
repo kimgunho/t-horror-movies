@@ -1,5 +1,5 @@
 import { links } from "./links";
-import { FiFilm, FiSearch, FiHeart } from "react-icons/fi";
+import { FiSearch, FiHeart } from "react-icons/fi";
 
 export const gnb = [
   {
@@ -9,7 +9,7 @@ export const gnb = [
   },
   {
     title: "myMovies",
-    link: links.home,
+    link: links.myMovies,
     icon: <FiHeart />,
   },
 ];
