@@ -55,9 +55,7 @@ function Main() {
               <p className={cx("originalTitle")}>
                 {detailState?.original_title}
               </p>
-              <h2 className={cx("title")}>
-                {detailState?.title} {detailState?.id}
-              </h2>
+              <h2 className={cx("title")}>{detailState?.title}</h2>
               <p className={cx("details")}>
                 <span>{detailState?.release_date}</span>
                 <span>

@@ -4,6 +4,8 @@
   @include container;
 
   > .subContainer {
+    @include flexCenter;
+
     > .limiter {
       @include limiter;
     }

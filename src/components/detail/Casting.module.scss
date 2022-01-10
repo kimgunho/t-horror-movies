@@ -1,0 +1,58 @@
+@import "../../common.scss";
+
+.casting {
+  padding: 2rem 0;
+
+  > .title {
+    color: #f0f0f0;
+    font-size: 1.125rem;
+    line-height: 2;
+  }
+
+  > .castingSwiper {
+    .slide {
+      margin-right: 1rem;
+      height: auto;
+      position: relative;
+      cursor: pointer;
+
+      > img {
+        width: 100%;
+        max-width: 8rem;
+        border: 8px solid #ddd;
+      }
+
+      > .notImg {
+        @include flexCenter;
+        background-color: #f0f0f0;
+        color: #333;
+        width: 100%;
+        max-width: 8rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-height: 12rem;
+        font-size: 12px;
+      }
+      > .info {
+        position: absolute;
+        background-color: #333;
+        color: #f0f0f0;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        font-size: 0.65rem;
+        bottom: 0;
+        left: -5%;
+        right: 0;
+
+        > .characterName {
+        }
+
+        > .originalName {
+        }
+      }
+    }
+  }
+}

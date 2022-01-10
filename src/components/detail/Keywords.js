@@ -23,7 +23,7 @@ function Keysords() {
     <ul className={cx("keywords")}>
       {keywords !== undefined
         ? keywords?.map(({ id, name }) => <li key={id}>{name}</li>)
-        : "loading"}
+        : "finding..."}
     </ul>
   );
 }

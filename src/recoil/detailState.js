@@ -31,7 +31,7 @@ export const getDetailMainApi = selector({
         return await response.json();
       }
     } catch (error) {
-      console.log("detail api error");
+      console.error("getDetailMainApi");
     }
   },
 });
@@ -46,7 +46,9 @@ export const getDetailKeywordsApi = selector({
         const response = await fetch(url);
         return await response.json();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("getDetailKeywordsApi");
+    }
   },
 });
 
@@ -60,6 +62,24 @@ export const getDetailWatchProvidersApi = selector({
         const response = await fetch(url);
         return await response.json();
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("getDetailWatchProvidersApi");
+    }
+  },
+});
+
+export const getDetailCastingApi = selector({
+  key: "getDetailCastingApi",
+  get: async ({ get }) => {
+    try {
+      const movieId = get(movieIdState);
+      if (movieId !== null) {
+        const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=ko`;
+        const response = await fetch(url);
+        return await response.json();
+      }
+    } catch (error) {
+      console.error("getDetailWatchProvidersApi");
+    }
   },
 });

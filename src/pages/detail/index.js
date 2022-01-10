@@ -29,9 +29,9 @@ function Detail() {
           <Main />
           <div className={cx("subContainer")}>
             <div className={cx("limiter")}>
-              {/* <Casting />
-          <Media />
-          <Similar /> */}
+              <Casting />
+              {/* <Media /> */}
+              {/* <Similar /> */}
             </div>
           </div>
         </>
