@@ -8,15 +8,24 @@ $normalPadding: 20px;
 // color ins
 $pointColor-purple: #713bda;
 
+@mixin backgroundCenter {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @mixin container {
   width: 100%;
   position: relative;
   height: 100vh;
   overflow-y: scroll;
 }
+
 @mixin limiter {
   width: 100%;
   max-width: $breakpoint-tablet;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 @mixin textInput {

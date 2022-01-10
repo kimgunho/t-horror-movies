@@ -1,0 +1,101 @@
+@import "../../common.scss";
+
+.main {
+  @include backgroundCenter;
+  @include flexCenter;
+  padding: 10rem 0;
+  box-sizing: border-box;
+
+  > .limiter {
+    @include limiter;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    > .image {
+      width: 20rem;
+      > img {
+        width: 100%;
+      }
+    }
+
+    > .info {
+      width: calc(100% - 20rem);
+      padding: $normalPadding;
+      box-sizing: border-box;
+
+      > .originalTitle {
+        color: #f0f0f0;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+
+      > .title {
+        font-size: 2rem;
+        color: #fff;
+        font-weight: 500;
+        line-height: 2;
+      }
+
+      > .details {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1rem;
+
+        > span {
+          color: #f0f0f0;
+          margin-right: 1rem;
+        }
+        > a {
+          color: #f0f0f0;
+        }
+      }
+
+      > .keywords {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1rem 0;
+
+        > li {
+          margin-right: 1rem;
+          font-size: 0.85rem;
+          color: #f0f0f0;
+
+          &::before {
+            content: "#";
+          }
+        }
+      }
+
+      > .score {
+        font-size: 1.5rem;
+        color: #f0f0f0;
+        line-height: 2;
+      }
+
+      > .detailInfo {
+        padding: 1rem 0;
+
+        > .description {
+          color: #f0f0f0;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        > .outline {
+          color: #f0f0f0;
+          font-size: 1.25rem;
+          line-height: 2;
+        }
+
+        > .overview {
+          color: #f0f0f0;
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
