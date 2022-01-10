@@ -10,6 +10,7 @@ import {
 import { numberTextFormat } from "../../utils/format";
 
 import Keysords from "./Keywords";
+import WatchProviders from "./WatchProviders";
 
 const cx = classNames.bind(styles);
 
@@ -60,7 +61,7 @@ function Main() {
                 : ""}
             </span>
             <span>{detailState?.runtime}</span>
-            {detailState?.homepage !== undefined ? (
+            {detailState?.homepage !== "" ? (
               <a target="_blank" href={detailState?.homepage} rel="noreferrer">
                 홈페이지
               </a>
@@ -68,7 +69,9 @@ function Main() {
               ""
             )}
           </p>
+          <WatchProviders />
           <Keysords />
+
           <p className={cx("score")}>
             {numberTextFormat(detailState?.vote_count)}개의 투표에서
             {detailState?.vote_average}
