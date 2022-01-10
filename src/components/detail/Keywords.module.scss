@@ -1,0 +1,19 @@
+@import "../../common.scss";
+
+.keywords {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+
+  > li {
+    margin: 0 0.5rem 0.5rem 0;
+    font-size: 0.85rem;
+    color: #f0f0f0;
+
+    &::before {
+      content: "#";
+    }
+  }
+}

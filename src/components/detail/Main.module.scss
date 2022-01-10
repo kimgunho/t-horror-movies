@@ -52,23 +52,6 @@
         }
       }
 
-      > .keywords {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 1rem 0;
-
-        > li {
-          margin-right: 1rem;
-          font-size: 0.85rem;
-          color: #f0f0f0;
-
-          &::before {
-            content: "#";
-          }
-        }
-      }
-
       > .score {
         font-size: 1.5rem;
         color: #f0f0f0;
@@ -94,6 +77,12 @@
           color: #f0f0f0;
           font-size: 0.95rem;
           line-height: 1.5;
+        }
+
+        > .notOutline {
+          color: #f0f0f0;
+          font-size: 1.125rem;
+          line-height: 3;
         }
       }
     }
