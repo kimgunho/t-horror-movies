@@ -31,25 +31,23 @@ function WatchProviders() {
   }, [state]);
 
   const drawWatchProviders = (watch, way) => {
-    return (
-      <div className={cx("inner")}>
-        <h2 className={cx("wayTitle")}>{way}</h2>
-        <ul className={cx("watchProviders")}>
-          {watch !== undefined ? (
-            watch.map(({ logo_path, provider_id, provider_name }) => (
+    if (watch !== undefined) {
+      return (
+        <div className={cx("inner")}>
+          <h2 className={cx("wayTitle")}>{way}</h2>
+          <ul className={cx("watchProviders")}>
+            {watch.map(({ logo_path, provider_id, provider_name }) => (
               <li key={provider_id}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${logo_path}`}
                   alt={provider_name}
                 />
               </li>
-            ))
-          ) : (
-            <li className={cx("notWatch")}>{way}서비스는 파악되지 않습니다.</li>
-          )}
-        </ul>
-      </div>
-    );
+            ))}
+          </ul>
+        </div>
+      );
+    }
   };
 
   return (
