@@ -1,0 +1,59 @@
+@import "../../common.scss";
+
+.dimmed {
+  @include flexCenter;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  > div {
+    border: 1px solid;
+  }
+
+  > .circlea {
+    border-color: $pointColor-purple;
+    animation: ratate 5s infinite ease;
+
+    @keyframes ratate {
+      0% {
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(0deg);
+      }
+      50% {
+        width: 3rem;
+        height: 3rem;
+        transform: rotate(360deg);
+      }
+      100% {
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  > .circleb {
+    border-color: #f0f0f0;
+    animation: ratateReverse 5s infinite ease;
+
+    @keyframes ratateReverse {
+      0% {
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(360deg);
+      }
+      50% {
+        width: 3rem;
+        height: 2rem;
+        transform: rotate(0deg);
+      }
+      100% {
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
